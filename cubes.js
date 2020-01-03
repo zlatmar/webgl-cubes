@@ -3,6 +3,7 @@ global.THREE = require("three");
 const random = require('canvas-sketch-util/random');
 const palettes = require('nice-color-palettes');
 const eases = require('eases');
+const BezierEasing = require('bezier-easing');
 
 // Include any additional ThreeJS examples below
 require("three/examples/js/controls/OrbitControls");
@@ -73,6 +74,8 @@ const sketch = ({ context }) => {
   )
   scene.add(light);
 
+  const easeFn = BezierEasing(0.67, 0.03, 0.29, 0.99);
+
   // draw each frame
   return {
     // Handle resize events here
@@ -106,7 +109,7 @@ const sketch = ({ context }) => {
     // Update & render your scene here
     render({ playhead }) {
       const t = Math.sin(playhead * Math.PI * 2) * 2;
-      scene.rotation.z = eases.quadInOut(t);
+      scene.rotation.z = easeFn(t);
       renderer.render(scene, camera);
     },
     // Dispose of events & renderer for cleaner hot-reloading
