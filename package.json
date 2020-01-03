@@ -5,6 +5,7 @@
   "main": "cubes.js",
   "scripts": {
     "sketch": "canvas-sketch cubes.js",
+    "shader": "canvas-sketch shader.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
